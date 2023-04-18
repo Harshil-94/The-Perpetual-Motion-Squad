@@ -42,7 +42,7 @@ def appp():
         # Preprocess the image and make a prediction
         # processed_image = preprocess_image(image)
         prediction ,checker= main_pred(image_path)
-        OMAGE_PATH = '../yolo/output.jpg'
+        OMAGE_PATH = 'output.jpg'
         image=Image.open(OMAGE_PATH)
         # Print the prediction
         st.write(f"Prediction: {prediction}")
