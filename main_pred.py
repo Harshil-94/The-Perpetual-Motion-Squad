@@ -1,13 +1,17 @@
 from ultralytics import YOLO
 
 def main_model(img_pth):
+  word="model"
   model1=YOLO("mainv3.pt")
   results = model1(img_pth)
   for r in results:
     for c in r.boxes.cls:
         word=str((model1.names[int(c)]))
         break
-  return(word)
+  if(word!="model"):
+    return(word)
+  else:
+     return("wrong input")
 
 def car_status(img_pth):
   model2=YOLO("car_status.pt")
@@ -47,8 +51,14 @@ def oil_check(img_pth):
 def main_pred(img_pth):
     prediction=""
     print("model started")
+    out1="model"
     out1=main_model(img_pth)
-    print("detected object : ",out1)
+    if(out1!="model"):
+      print("detected object : ",out1)
+    else:
+       print("wrong input")
+       return("wrong input")
+    
     prediction+="detected object : "+out1+"\n"
     if(out1=="car"):
       out2=car_status(img_pth)
@@ -69,8 +79,10 @@ def main_pred(img_pth):
       else:
         print("tire_crack : Cracked")
         prediction+="tire crack : Cracked"+"\n"
-    else:
+    elif(out1=="oil"):
       out6=oil_check(img_pth)
       print("oil condition : ",out6)
       prediction+="oil condition : "+out6+"\n"
+    else:
+       print("wrong input")
     return (prediction,out1)
