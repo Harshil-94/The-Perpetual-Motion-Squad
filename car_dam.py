@@ -51,12 +51,12 @@ from scipy.spatial import distance
 # %%
 # I am visualizing some images in the 'val/' directory
 
-dataDir='/Users/nishchaya_jandyal/Desktop/YOLO/yolo/image/val'
+dataDir='./image/val'
 dataType='COCO_val_annos'
 mul_dataType='COCO_mul_val_annos'
 annFile='{}/{}.json'.format(dataDir,dataType)
 mul_annFile='{}/{}.json'.format(dataDir,mul_dataType)
-img_dir = "/Users/nishchaya_jandyal/Desktop/YOLO/yolo/image/img"
+img_dir = "./image/img"
 
 # %% [markdown]
 # <h3 class="list-group-item list-group-item-action active" data-toggle="list" style='background:black; color:white; border:0' role="tab" aria-controls="home"><center style='padding-top: 15px'> Initialize the COCO API</center></h3>
@@ -296,7 +296,7 @@ def predict_cond(img_pth):
     #plot
     ax1.imshow(damage_out.get_image()[:, :, ::-1],)
     ax2.imshow(parts_out.get_image()[:, :, ::-1])
-    ax1.figure.savefig("../yolo/output.jpg")
+    ax1.figure.savefig("output.jpg")
     damage_prediction_classes = [ damage_class_map[el] + "_" + str(indx) for indx,el in enumerate(damage_outputs["instances"].pred_classes.tolist())]
     damage_polygon_centers = damage_outputs["instances"].pred_boxes.get_centers().tolist()
     damage_dict = dict(zip(damage_prediction_classes,damage_polygon_centers))
